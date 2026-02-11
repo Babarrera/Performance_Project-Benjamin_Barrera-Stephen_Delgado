@@ -1,55 +1,42 @@
- #list: stores athletes profile data
 athlete_data = []
-# Student Developed Procedure
-def calulate_calories(weight, goal, activity_level):
-    """
-    Calculates daily calorie needs based on weight, goal, and activity level.
-    
-    Parameters:
-        weight (float): Current weight in pounds
-        goal (str): Weight goal - "maintain", "gain", or "lose"
-        activity_level (str): Activity level - "low", "moderate", or "high"
-    
-    Returns:
-        int: Recommended daily calories
-    """
-# Base  metabolic rate caluclation
-base_calories = weight * 12
+activity_levels = ["inactive", "active", "very_active"]
 
-# Selection: Adjust nased on activiety level\
-if activity_level == "low":
-    calories = base_calories * 1.2
-elif activity_level == "moderate":
-    calories = base_calories * 1.5
-else: # High activity level
-    calories = base_calories * 1.8
+weight = float(input("Enter your weight: "))
+goal = input("Enter your goal (lose/gain/maintain): ")
+hours_active = float(input("Enter your hours_active: "))
 
-# Selection: Adjust Based on goal 
-if goal == "lose"
-calories = calories - 500
-elif goal == "gain":
-    calories = calories + 500
-    # if maintain, no change needed
+def calories(weight, goal, hours_active):
+    # clearer thresholds: <2 inactive, 2-<3 active, >=3 very_active
+    if hours_active < 2:
+        activity_level = "inactive"
+    elif hours_active < 3:
+        activity_level = "active"
+    else:
+        activity_level = "very_active"
 
-    return int(calories)
+    if goal == "lose":
+        if activity_level == "inactive":
+            cal = weight * 13 - 500
+        elif activity_level == "active":
+            cal = weight * 15 - 500
+        else:
+            cal = weight * 18 - 500
+    elif goal == "gain":
+        if activity_level == "inactive":
+            cal = weight * 13 + 500
+        elif activity_level == "active":
+            cal = weight * 15 + 500
+        else:
+            cal = weight * 18 + 500
+    else:  # maintain or unexpected
+        if activity_level == "inactive":
+            cal = weight * 13
+        elif activity_level == "active":
+            cal = weight * 15
+        else:
+            cal = weight * 18
 
-    #student-developed procedure with parameter
-    def calculate_sleep(training_hours):
-        """
-        Calculates recommended sleep hours based on training intensity
-        
-        Parameters:
-            training_hours (float): Hours of training per day
-        
-        Returns:
-            float: Recommended sleep hours
-        """
-        base_sleep = 7.0
+    return cal
 
-        # Selection: Adjust sleep based on training hours
-        if training_hours > 2:
-            sleep_hours += 2
-        elif training_hours > 1:
-            sleep_hours += 1
-
-        return sleep_hours
+result = calories(weight, goal, hours_active)
+print(f"Daily calorie recommendation: {result}")
