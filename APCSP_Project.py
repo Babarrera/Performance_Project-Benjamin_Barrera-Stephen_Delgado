@@ -57,3 +57,22 @@ def how_much_you_should_sleep(hours_active):
         return "9-10 hours of sleep" 
 result = how_much_you_should_sleep(hours_active)
 print(f"Dailey sleep: {result}")
+
+def want_to_know_how_much_water_to_drink(weight, hours_active):
+    answer = input("Do you want to know how much water you should drink? (yes/no): ")
+    if answer == "yes":
+        weight * 0.5 + hours_active * 24
+        return f"You should drink {weight * 0.5 + hours_active * 24} ounces of water daily."
+    else:     
+        return "It's important to stay hydrated"
+result = want_to_know_how_much_water_to_drink(weight, hours_active)
+print(result)
+
+def want_a_workout_plan(answer):
+    answer = input("Your school already has a workout plan(true/false): ")
+    if answer == "true":
+        return "That's good I can still generate a workout for you"
+    else:
+        answer = input("Do you want me to generate a workout plan for you? (yes/no): ")
+        if answer == "yes":
+            return "Good do you want a workout plan for Push, Pull, Legs, core, full body, cardio? (enter the ones you want separated by commas): "
